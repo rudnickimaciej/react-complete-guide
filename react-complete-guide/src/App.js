@@ -1,28 +1,36 @@
-import React from "react";
+import React, { useState } from "react";
 
 import Adoptions from "./components/Adoptions/Adoptions";
+import NewAdoption from "./components/NewAdoption/NewAdoption";
 
 const App = () => {
-  const adoptions = [
+  const adoptionsMock = [
     {
       id: "e1",
       title: "Tara",
-      status: "adoptowany",
+      status: "adopted",
       birthdate: new Date(2020, 7, 14),
     },
-    { 
-      id: "e2", 
-      title: "Sara", 
-      status: "adoptowany", 
-      birthdate: new Date(2021, 2, 12) 
+    {
+      id: "e2",
+      title: "Sara",
+      status: "adopted",
+      birthdate: new Date(2021, 2, 12),
     },
     {
       id: "e3",
       title: "Leon",
-      status: "czeka na adopcję",
+      status: "notadopted",
       birthdate: new Date(2021, 2, 28),
-    }
+    },
   ];
+  const [adoptions, setAdoptions] = useState(adoptionsMock);
+
+  const addAdoption = (adoption) => {
+    setAdoptions([...adoptions, adoption]);
+
+    console.log(adoptions);
+  };
 
   // return React.createElement(
   //   'div',
@@ -34,6 +42,7 @@ const App = () => {
   return (
     <div>
       <h2>Let's get started!</h2>
+      <NewAdoption onAdoptionCreated={addAdoption} />
       <Adoptions items={adoptions} />
     </div>
   );
