@@ -1,5 +1,6 @@
 import React from "react";
-
+import AdoptionStatus
+ from "../../common/enums";
 import "./AdoptionsFilter.css";
 
 const AdoptionsFilter = (props) => {
@@ -8,9 +9,11 @@ const AdoptionsFilter = (props) => {
       <div className="adoptions-filter__control">
         <label>Filter by status</label>
         <select onChange={props.onAdoptionsFiltedChange}>
-          <option value="adopted">Adopted</option>
-          <option value="duringadoption">During Adoption</option>
-          <option value="notadopted">Not Adopted</option>
+        {Object.keys(AdoptionStatus).map((key) => (
+              <option key={key} value={AdoptionStatus[key].id}>
+                {AdoptionStatus[key].name}
+              </option>
+            ))}
         </select>
       </div>
     </div>

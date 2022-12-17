@@ -1,21 +1,20 @@
 import React, { useState } from "react";
 import "./AdoptionForm.css";
 import AdoptionStatus from "../../common/enums";
+import mapStatusToEnum from '../../common/helpers'
 
 const AdoptionForm = (props) => {
   const [userInput, setUserInput] = useState({
-    name: "Name",
-    birtdate: "2022-04-12",
+    title: "Name",
+    birthdate: Date.now,
     status: AdoptionStatus.adopted.id,
   });
-  const [adoptionStatus, setAdoptionStatus] = useState(
-    AdoptionStatus.notAdopted.value
-  );
   const handleAdoptionStatusChange = (event) => {
     setUserInput(prev=>{
-      return {...prev, status:event.target.value}
+      return {...prev, status: mapStatusToEnum(event.target.value)}
     })
   };
+
   const submitHandler = (event) => {
     event.preventDefault();
     props.onAdoptionSubmit({ ...userInput });
@@ -29,10 +28,10 @@ const AdoptionForm = (props) => {
             type="text"
             onChange={(e) =>
               setUserInput((prev) => {
-                return { ...prev, name: e.target.value };
+                return {  ...prev ,title: e.target.value};
               })
             }
-            value={userInput.name}
+            value={userInput.title}
           />
         </div>
         <div className="new-adoption__control">
@@ -41,10 +40,9 @@ const AdoptionForm = (props) => {
             type="date"
             min="2000-01-01"
             max="2022-12-31"
-            value={userInput.birthdate}
             onChange={(e) =>
               setUserInput((prev) => {
-                return { ...prev, birtdate: new Date(e.target.value) };
+                return { ...prev, birthdate: new Date(e.target.value) };
               })
             }
           />
@@ -54,11 +52,10 @@ const AdoptionForm = (props) => {
           <select
             name="statuses"
             id="statuses"
-            value={userInput.status}
             onChange={handleAdoptionStatusChange}
           >
             {Object.keys(AdoptionStatus).map((key) => (
-              <option key={key} value={key}>
+              <option key={key} value={AdoptionStatus[key].id}>
                 {AdoptionStatus[key].name}
               </option>
             ))}
