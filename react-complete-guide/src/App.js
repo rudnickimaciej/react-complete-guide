@@ -41,12 +41,17 @@ const App = () => {
      console.log(adoptions);
   };
 
-
+ const onItemDelete = (id)=>{
+  setAdoptions((prev) => {
+    return prev.filter((a)=>{return a.id !== id} )
+  });
+ }
   return (
     <div>
-      <h2>Let's get started!</h2>
+      <br/>
       <NewAdoption onAdoptionCreated={addAdoption} />
-      <Adoptions adoptions={adoptions} />
+      <Adoptions adoptions={adoptions} onItemDelete = {onItemDelete}/>
+      <br/>
     </div>
   );
 };

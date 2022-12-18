@@ -4,7 +4,7 @@ import AdoptionItem from "./AdoptionItem";
 import Card from "../UI/Card";
 import "./Adoptions.css";
 import AdoptionStatus from "../../common/enums";
-
+import AdoptionsList from "./AdoptionsList";
 const Adoptions = (props) => {
   const [filteredAdoptions, setFilteredAdoptions] = useState(
     props.adoptions.filter((a) => {
@@ -20,22 +20,13 @@ const Adoptions = (props) => {
     });
   };
   return (
-    <Card className="adoptions">
-      <AdoptionsFilter
-        onAdoptionsFiltedChange={onAdoptionsFiltedChange}
-        initialValue={AdoptionStatus.adopted}
-      />
-      {filteredAdoptions.length === 0 && <p> Not adoptions in this status</p>}
-      {filteredAdoptions.length > 0 && filteredAdoptions.map((a) => (
-        <AdoptionItem
-          key={a.id}
-          title={a.title}
-          status={a.status.name} 
-          birthdate={a.birthdate}
+      <Card className="adoptions">
+        <AdoptionsFilter
+          onAdoptionsFiltedChange={onAdoptionsFiltedChange}
+          initialValue={AdoptionStatus.adopted}
         />
-      ))}
-  
-    </Card>
+        <AdoptionsList items={filteredAdoptions} />
+      </Card>
   );
 };
 

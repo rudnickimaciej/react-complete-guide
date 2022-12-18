@@ -16,7 +16,9 @@
   justify-content: flex-start;
   flex: 1;
 }
-
+.adoption-item__delete{
+  background-color: red;
+}
 .adoption-item h2 {
   color: #3a3a3a;
   font-size: 1rem;
