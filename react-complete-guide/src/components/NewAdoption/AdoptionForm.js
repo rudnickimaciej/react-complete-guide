@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./AdoptionForm.css";
 import AdoptionStatus from "../../common/enums";
-import mapStatusToEnum from '../../common/helpers'
+import mapStatusToEnum from "../../common/helpers";
 
 const AdoptionForm = (props) => {
   const [userInput, setUserInput] = useState({
@@ -9,16 +9,17 @@ const AdoptionForm = (props) => {
     birthdate: Date.now,
     status: AdoptionStatus.adopted.id,
   });
-  const handleAdoptionStatusChange = (event) => {
-    setUserInput(prev=>{
-      return {...prev, status: mapStatusToEnum(event.target.value)}
-    })
+  const  handleAdoptionStatusChange = (event) => {
+    setUserInput((prev) => {
+      return { ...prev, status: mapStatusToEnum(event.target.value) };
+    });
   };
 
   const submitHandler = (event) => {
     event.preventDefault();
     props.onAdoptionSubmit({ ...userInput });
   };
+
   return (
     <form onSubmit={submitHandler}>
       <div className="new-adoption__controls">
@@ -28,7 +29,7 @@ const AdoptionForm = (props) => {
             type="text"
             onChange={(e) =>
               setUserInput((prev) => {
-                return {  ...prev ,title: e.target.value};
+                return { ...prev, title: e.target.value };
               })
             }
             value={userInput.title}
@@ -63,7 +64,11 @@ const AdoptionForm = (props) => {
         </div>
       </div>
       <div className="add-adoption__actions">
-        <button type="submit"> Add Adoption</button>
+        <button onClick={props.cancelAddAdoption} type="submit">
+          {" "}
+          Cancel
+        </button>
+        <button type="submit"> Add</button>
       </div>
     </form>
   );
