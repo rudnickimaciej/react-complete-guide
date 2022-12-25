@@ -9,7 +9,9 @@ const AdoptionForm = (props) => {
     birthdate: Date.now,
     status: AdoptionStatus.adopted.id,
   });
-  const  handleAdoptionStatusChange = (event) => {
+
+  const [emptyNameValidation, setEmptyNameValidation] = useState(false);
+  const handleAdoptionStatusChange = (event) => {
     setUserInput((prev) => {
       return { ...prev, status: mapStatusToEnum(event.target.value) };
     });
@@ -17,6 +19,10 @@ const AdoptionForm = (props) => {
 
   const submitHandler = (event) => {
     event.preventDefault();
+    if (userInput.title.trim().length === 0) {
+      setEmptyNameValidation(true);
+      return;
+    }
     props.onAdoptionSubmit({ ...userInput });
   };
 
