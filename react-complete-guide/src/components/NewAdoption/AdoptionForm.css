@@ -12,6 +12,10 @@
   display: block;
 }
 
+.new-adoption__control input.error {
+  border-color: red;
+
+}
 .new-adoption__control input {
   font: inherit;
   padding: 0.5rem;

@@ -2,15 +2,16 @@ import React, { useState } from "react";
 import "./AdoptionForm.css";
 import AdoptionStatus from "../../common/enums";
 import mapStatusToEnum from "../../common/helpers";
-
+import ErrorModal
+ from "../UI/ErrorModal";
 const AdoptionForm = (props) => {
   const [userInput, setUserInput] = useState({
-    title: "Name",
-    birthdate: Date.now,
-    status: AdoptionStatus.adopted.id,
+    title: "",
+    birthdate: null,
+    status: mapStatusToEnum(AdoptionStatus["adopted"].id),
   });
 
-  const [emptyNameValidation, setEmptyNameValidation] = useState(false);
+  const [error, setError] = useState();
   const handleAdoptionStatusChange = (event) => {
     setUserInput((prev) => {
       return { ...prev, status: mapStatusToEnum(event.target.value) };
@@ -19,64 +20,91 @@ const AdoptionForm = (props) => {
 
   const submitHandler = (event) => {
     event.preventDefault();
+    console.log(userInput);
     if (userInput.title.trim().length === 0) {
-      setEmptyNameValidation(true);
+      setError({
+        title: "Invalid input",
+        message: "Name cannot be empty!",
+      });
+      return;
+    }
+    if (userInput.birthdate === null) {
+      setError({
+        title: "Invalid date",
+        message: "Date cannot be empty!",
+      });
       return;
     }
     props.onAdoptionSubmit({ ...userInput });
+    setUserInput({
+      title: null,
+      birthdate: null,
+      status: AdoptionStatus.adopted.id,
+    });
   };
 
   return (
-    <form onSubmit={submitHandler}>
-      <div className="new-adoption__controls">
-        <div className="new-adoption__control">
-          <label> Name</label>
-          <input
-            type="text"
-            onChange={(e) =>
-              setUserInput((prev) => {
-                return { ...prev, title: e.target.value };
-              })
-            }
-            value={userInput.title}
-          />
+    <>
+       {error && (
+        <ErrorModal
+          title={error.title}
+          message={error.message}
+          onConfirm ={()=>setError(null)}
+        />
+      )}
+      <form onSubmit={submitHandler}>
+        <div className="new-adoption__controls">
+          <div className={`new-adoption__control`}>
+            <label> Name</label>
+            <input
+              className={error ? "error" : ""}
+              type="text"
+              onChange={(e) =>
+                setUserInput((prev) => {
+                  return { ...prev, title: e.target.value };
+                })
+              }
+              value={userInput.title}
+            />
+          </div>
+          <div className="new-adoption__control">
+            <label> Birthdate</label>
+            <input
+              className={error ? "error" : ""}
+              type="date"
+              min="2000-01-01"
+              max="2022-12-31"
+              onChange={(e) =>
+                setUserInput((prev) => {
+                  return { ...prev, birthdate: new Date(e.target.value) };
+                })
+              }
+            />
+          </div>
+          <div className="new-adoption__control">
+            <label> Status</label>
+            <select
+              name="statuses"
+              id="statuses"
+              onChange={handleAdoptionStatusChange}
+            >
+              {Object.keys(AdoptionStatus).map((key) => (
+                <option key={key} value={AdoptionStatus[key].id}>
+                  {AdoptionStatus[key].name}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
-        <div className="new-adoption__control">
-          <label> Birthdate</label>
-          <input
-            type="date"
-            min="2000-01-01"
-            max="2022-12-31"
-            onChange={(e) =>
-              setUserInput((prev) => {
-                return { ...prev, birthdate: new Date(e.target.value) };
-              })
-            }
-          />
+        <div className="add-adoption__actions">
+          <button onClick={props.cancelAddAdoption} type="submit">
+            {" "}
+            Cancel
+          </button>
+          <button type="submit"> Add</button>
         </div>
-        <div className="new-adoption__control">
-          <label> Status</label>
-          <select
-            name="statuses"
-            id="statuses"
-            onChange={handleAdoptionStatusChange}
-          >
-            {Object.keys(AdoptionStatus).map((key) => (
-              <option key={key} value={AdoptionStatus[key].id}>
-                {AdoptionStatus[key].name}
-              </option>
-            ))}
-          </select>
-        </div>
-      </div>
-      <div className="add-adoption__actions">
-        <button onClick={props.cancelAddAdoption} type="submit">
-          {" "}
-          Cancel
-        </button>
-        <button type="submit"> Add</button>
-      </div>
-    </form>
+      </form>
+    </>
   );
 };
 

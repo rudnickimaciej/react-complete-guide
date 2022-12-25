@@ -8,7 +8,7 @@ const AdoptionsList = (props) => {
   return (
     <ul className="adoptions-list">
       {props.items.map((a) => (
-        <li>
+        <li key={a.id}>
           <AdoptionItem
             id={a.id}
             key={a.id}

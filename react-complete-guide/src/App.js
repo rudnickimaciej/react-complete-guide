@@ -37,8 +37,6 @@ const App = () => {
     setAdoptions((prev) => {
       return [ adoption,...prev];
     });
-
-     console.log(adoptions);
   };
 
  const onItemDelete = (id)=>{
