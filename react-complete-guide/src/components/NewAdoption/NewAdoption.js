@@ -21,6 +21,7 @@ const NewAdoption = (props) => {
   const saveAdoptionHandler = (newAdoption) => {
     const adoption = { ...newAdoption, id: Math.random().toString() };
     props.onAdoptionCreated(adoption);
+    setFormIdExpanded(false)
   };
   return (
     <div className="new-adoption">

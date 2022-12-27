@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, { useState,useRef } from "react";
 import "./AdoptionForm.css";
 import AdoptionStatus from "../../common/enums";
 import mapStatusToEnum from "../../common/helpers";
 import ErrorModal
  from "../UI/ErrorModal";
 const AdoptionForm = (props) => {
+
+  const titleRef = useRef();
   const [userInput, setUserInput] = useState({
-    title: "",
     birthdate: null,
     status: mapStatusToEnum(AdoptionStatus["adopted"].id),
   });
@@ -21,7 +22,7 @@ const AdoptionForm = (props) => {
   const submitHandler = (event) => {
     event.preventDefault();
     console.log(userInput);
-    if (userInput.title.trim().length === 0) {
+    if (titleRef.current.value.trim().length === 0) {
       setError({
         title: "Invalid input",
         message: "Name cannot be empty!",
@@ -35,9 +36,8 @@ const AdoptionForm = (props) => {
       });
       return;
     }
-    props.onAdoptionSubmit({ ...userInput });
+    props.onAdoptionSubmit({ ...userInput,title:titleRef.current.value });
     setUserInput({
-      title: null,
       birthdate: null,
       status: AdoptionStatus.adopted.id,
     });
@@ -59,12 +59,7 @@ const AdoptionForm = (props) => {
             <input
               className={error ? "error" : ""}
               type="text"
-              onChange={(e) =>
-                setUserInput((prev) => {
-                  return { ...prev, title: e.target.value };
-                })
-              }
-              value={userInput.title}
+              ref ={titleRef}
             />
           </div>
           <div className="new-adoption__control">
