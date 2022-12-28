@@ -1,57 +1,31 @@
-import React, { useState } from "react";
-import AdoptionStatus from "./common/enums";
+import React, { useState } from 'react';
 
-import Adoptions from "./components/Adoptions/Adoptions";
-import NewAdoption from "./components/NewAdoption/NewAdoption";
-import mapStatusToEnum from './common/helpers'
-const App = () => {
-  const adoptionsMock = [
-    {
-      id: "e1",
-      title: "Tara",
-      status: AdoptionStatus.adopted,
-      birthdate: new Date(2020, 7, 14),
-    },
-    {
-      id: "e2",
-      title: "Sara",
-      status: AdoptionStatus.notAdopted,
-      birthdate: new Date(2021, 2, 12),
-    },
-    // {
-    //   id: "e3",
-    //   title: "Leon",
-    //   status: AdoptionStatus.duringAdoption,
-    //   birthdate: new Date(2021, 2, 28),
-    // },
-    {
-      id: "e4",
-      title: "Leon",
-      status: AdoptionStatus.adopted,
-      birthdate: new Date(2021, 2, 28),
-    },
-  ];
-  const [adoptions, setAdoptions] = useState(adoptionsMock);
+import Login from './components/Login/Login';
+import Home from './components/Home/Home';
+import MainHeader from './components/MainHeader/MainHeader';
 
-  const addAdoption = (adoption) => {
-    setAdoptions((prev) => {
-      return [ adoption,...prev];
-    });
+function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const loginHandler = (email, password) => {
+    // We should of course check email and password
+    // But it's just a dummy/ demo anyways
+    setIsLoggedIn(true);
   };
 
- const onItemDelete = (id)=>{
-  setAdoptions((prev) => {
-    return prev.filter((a)=>{return a.id !== id} )
-  });
- }
+  const logoutHandler = () => {
+    setIsLoggedIn(false);
+  };
+
   return (
-    <div>
-      <br/>
-      <NewAdoption onAdoptionCreated={addAdoption} />
-      <Adoptions adoptions={adoptions} onItemDelete = {onItemDelete}/>
-      <br/>
-    </div>
+    <React.Fragment>
+      <MainHeader isAuthenticated={isLoggedIn} onLogout={logoutHandler} />
+      <main>
+        {!isLoggedIn && <Login onLogin={loginHandler} />}
+        {isLoggedIn && <Home onLogout={logoutHandler} />}
+      </main>
+    </React.Fragment>
   );
-};
+}
 
 export default App;
