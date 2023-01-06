@@ -36,19 +36,16 @@ const Login = (props) => {
     isValid: false,
   });
 
-  const { isValid: emailIsValid } = emailState; //tutaj tworzymy aliasy zmiennych (isValid -> emailIsValid)
-  const { isValid: passwordIsValie } = passwordState;
-
   useEffect(() => {
     //useEffect jest odpalany PO aktualizacjach stanu, dlatego można śmiało umieścić tutaj setFormIsValid ponieważ mamy pewność, że doszło do aktualizacji stanów email i phone
     const identifier = setTimeout(() => {
       console.log("chcecking form validity");
-      setFormIsValid(emailIsValid && passwordIsValie);
+      setFormIsValid(emailState.isValid && passwordState.isValid);
     }, 500);
     return () => {
       clearTimeout(identifier);
     };
-  }, [emailIsValid, passwordIsValie]); //dzięku temu, że używamy tutaj tylko atrybutu IsValid zamiast całego stanu
+  }, [emailState.isValid, passwordState.isValid]); //dzięku temu, że używamy tutaj tylko atrybutu IsValid zamiast całego stanu
   //to useEffect nie jest niepotrzebnie odpalany gdy do hasła > 6 dodawane są kolejne znaki albo gdy do mejla z @ dodawane są kolejne znaki
 
   const emailChangeHandler = (event) =>
