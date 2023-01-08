@@ -10,3 +10,7 @@
 
 ### AuthContextProvider
 - Authentication logic moved to separate Provider ([here](https://github.com/rudnickimaciej/react-complete-guide/commit/08344bb0affd26c8b0607b3cd878f2fb54600d8b#diff-e6045823a5fa50d98273de5dea5c66f3ab39bc0cb6d7e808268c5804141db0de))
+
+
+### Input 
+- Forward Refs -  focusing on Input when it is not valid made imperatively ([Maximilian's explanation](https://www.udemy.com/course/react-the-complete-guide-incl-redux/learn/lecture/25599276#overview))
