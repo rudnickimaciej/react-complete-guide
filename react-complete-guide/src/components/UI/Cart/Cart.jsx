@@ -7,6 +7,7 @@ import StoreContext from "../../../context/store-context";
 
 const Cart = (props) => {
   const storeCtx = useContext(StoreContext);
+
   return (
     storeCtx.cartIsVisible && (
       <React.Fragment>
@@ -16,11 +17,19 @@ const Cart = (props) => {
         )}
         {ReactDOM.createPortal(
           <Card className={classes.modal}>
-            <CartItem />
-            <CartItem />
-            <CartItem />
+            {storeCtx.tickets.map((t) => (
+              <CartItem ticket={t} />
+            ))}
+
             <footer className={classes.actions}>
-              <h1> Total: $55</h1>
+              <h1>
+                Total:$
+                {Math.floor(
+                  storeCtx.tickets
+                    .map((t) => t.movie.price * t.count)
+                    .reduce((partialSum, a) => partialSum + a, 0)
+                )}
+              </h1>
               <button onClick={storeCtx.onHideCartEventHandler}>Cancel</button>
               <button onClick={props.onOrder}>Order</button>
             </footer>
