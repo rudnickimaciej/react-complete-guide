@@ -9,7 +9,7 @@ const MovieItem = (props) => {
 
   const onFormSubmitHandler = (event) => {
     event.preventDefault();
-    storeCtx.onAddTicket({ movie: props.movie }, count);
+    storeCtx.onAddTicket(props.movie, count);
   };
   return (
     <div className={classes.movie}>

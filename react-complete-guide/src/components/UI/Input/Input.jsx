@@ -4,6 +4,7 @@ import classes from "./Input.module.css";
 const Input = (props) => {
   return (
     <div
+      onClick={props.onClick}
       className={`${classes.input} ${
         props.isValid === false ? classes.invalid : ""
       }`}
