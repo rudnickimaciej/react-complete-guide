@@ -14,3 +14,7 @@
 
 ### Input 
 - Forward Refs -  focusing on Input when it is not valid made imperatively ([Maximilian's explanation](https://www.udemy.com/course/react-the-complete-guide-incl-redux/learn/lecture/25599276#overview))
+
+
+### FetchAPI
+- fetching data (using then() and using async/await) 
