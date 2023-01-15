@@ -1,5 +1,3 @@
-### useReducer
-* useReducer + debouncing as exemplified by simple [Login](https://github.com/rudnickimaciej/react-complete-guide/blob/sideEffects_reducers_contextapi/react-complete-guide/src/components/Login/Login.js) page (email + phone)  
 
 
 ### AuthContext.Consumer 
@@ -18,3 +16,15 @@
 
 ### FetchAPI
 - fetching data (using then() and using async/await)  ([here](https://github.com/rudnickimaciej/react-complete-guide/commit/5ee7f6a8ddfe6db42e5988e1337f5131166f0631#diff-7692de8d345cc87d0bcebff6808b322003d5cf2c334578541dcc3034c9f14eb2))
+
+
+## Hooks
+### useReducer
+* useReducer + debouncing as exemplified by simple [Login](https://github.com/rudnickimaciej/react-complete-guide/blob/sideEffects_reducers_contextapi/react-complete-guide/src/components/Login/Login.js) page (email + phone)  
+
+
+## Custom Hooks
+### useCounter hook
+* hook used to increment counter state ([here](https://github.com/rudnickimaciej/react-complete-guide/commit/c33eea8cedf85f7bc1b497950b3e84a7d527f339#diff-e7dd82ddcda3f5e7e9e2ccbe1f80a505dc4d91789e7678526f051c7c8ba118f8)
+
+###
