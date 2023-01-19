@@ -22,7 +22,11 @@
 
 ## Custom Hooks
 ### useCounter hook
-* hook used to increment counter state ([here](https://github.com/rudnickimaciej/react-complete-guide/commit/c33eea8cedf85f7bc1b497950b3e84a7d527f339#diff-e7dd82ddcda3f5e7e9e2ccbe1f80a505dc4d91789e7678526f051c7c8ba118f8)
+* hook used to increment counter state ([here](https://github.com/rudnickimaciej/react-complete-guide/commit/c33eea8cedf85f7bc1b497950b3e84a7d527f339#diff-e7dd82ddcda3f5e7e9e2ccbe1f80a505dc4d91789e7678526f051c7c8ba118f8))
+
+### useInput hook
+* hook used to manage simple input state ([here](https://github.com/rudnickimaciej/react-complete-guide/commit/cc2242e5e23bb53297bbaef865bfde9e8ad7095f#diff-d0a68606edaa13cdf425d628c33b7192fd78e62b13daecf87a4e94dbd67a7ba9))
+
 
 ## Other
 
