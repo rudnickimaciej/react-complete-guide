@@ -1,13 +1,11 @@
-import React from "react";
+import SimpleInput from './components/SimpleInput';
 
-
-const App = () => {
- 
+function App() {
   return (
-    <div>
-      <h2>Let's get started!</h2>
+    <div className="app">
+      <SimpleInput />
     </div>
   );
-};
+}
 
 export default App;
