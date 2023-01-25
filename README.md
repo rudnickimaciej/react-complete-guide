@@ -33,6 +33,8 @@
 
 * Routing with createRoutesFromElements ([here](https://github.com/rudnickimaciej/react-complete-guide/commit/58e8d5d6fb3edf4f26b8dab3bbfe651d0bd1c15c))
 
+* Routing with layout ([here](https://github.com/rudnickimaciej/react-complete-guide/commit/0129ebd7f9839fc25bf880d178025d09a8ac7cc7#diff-7692de8d345cc87d0bcebff6808b322003d5cf2c334578541dcc3034c9f14eb2))
+
 ## Other
 
 ### Input 
