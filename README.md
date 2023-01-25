@@ -1,4 +1,4 @@
-
+# React topics :diamond_shape_with_a_dot_inside:
 
 
 ## Context API
@@ -41,3 +41,12 @@
 
 ### FetchAPI
 - fetching data (using then() and using async/await)  ([here](https://github.com/rudnickimaciej/react-complete-guide/commit/5ee7f6a8ddfe6db42e5988e1337f5131166f0631#diff-7692de8d345cc87d0bcebff6808b322003d5cf2c334578541dcc3034c9f14eb2))
+
+
+# Components :eight_pointed_black_star:
+
+### Main Header 
+* here
+* here
+
+
