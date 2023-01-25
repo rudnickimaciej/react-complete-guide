@@ -28,6 +28,11 @@
 * hook used to manage simple input state ([here](https://github.com/rudnickimaciej/react-complete-guide/commit/cc2242e5e23bb53297bbaef865bfde9e8ad7095f#diff-d0a68606edaa13cdf425d628c33b7192fd78e62b13daecf87a4e94dbd67a7ba9))
 
 
+## Routing
+* Routing with createBrowserRouter ([here](https://github.com/rudnickimaciej/react-complete-guide/commit/b0d3cd457646d8ce560e852c5077a8c4bca7afeb#diff-7692de8d345cc87d0bcebff6808b322003d5cf2c334578541dcc3034c9f14eb2))
+
+* Routing with createRoutesFromElements ([here](https://github.com/rudnickimaciej/react-complete-guide/commit/58e8d5d6fb3edf4f26b8dab3bbfe651d0bd1c15c))
+
 ## Other
 
 ### Input 
