@@ -5,16 +5,16 @@ import {
   createRoutesFromElements,
 } from "react-router-dom";
 import Home from "./pages/Home";
-import Info from "./pages/Info";
+import Producs from "./pages/Products";
 import Layout from "./pages/Layout";
-import { Children } from "react";
 import Login from "./pages/Login";
 import ErrorPage from "./pages/ErrorPage";
+import Product from "./pages/Product";
 
 const routerDefinitions = createRoutesFromElements(
   <Route path="/" element={<Layout />}>
     <Route path="/" element={<Home />} />
-    <Route path="/info" element={<Info />} />
+    <Route path="/products" element={<Producs />} />
   </Route>
 );
 
@@ -24,8 +24,9 @@ const router2 = createBrowserRouter([
     element: <Layout />,
     errorElement: <ErrorPage />,
     children: [
-      { path: "/", element: <Home /> },
-      { path: "/info", element: <Info /> },
+      { path: "", element: <Home /> },
+      { path: "products", element: <Producs /> },
+      { path: "products/:id", element: <Product /> },
     ],
   },
   { path: "/login", element: <Login /> },
