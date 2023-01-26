@@ -20,7 +20,7 @@ function MainNavigation() {
               className={({ isActive }) =>
                 isActive ? classes.active : undefined
               }
-              to="/info"
+              to="/products"
             >
               Info
             </NavLink>
